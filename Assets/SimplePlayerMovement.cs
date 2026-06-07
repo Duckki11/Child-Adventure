@@ -7,6 +7,10 @@ public class SimplePlayerMovement : MonoBehaviour
     public UIManager uiManager;
     public CharacterController controller;
     public Transform cam;
+
+    // 【新增】用來控制動畫的變數
+    public Animator animator;
+
     public float speed = 5.0f;
     public float moveSpeedMultiplier = 1.0f;
 
@@ -19,7 +23,6 @@ public class SimplePlayerMovement : MonoBehaviour
     private bool isGrounded;
 
     [Header("體力系統 (不可回復)")]
-    // 【關鍵修改】這裡從 Slider 變成了 Image！
     public Image staminaBar;
     public float maxStamina = 20f;
     public float currentStamina;
@@ -31,8 +34,13 @@ public class SimplePlayerMovement : MonoBehaviour
         currentStamina = maxStamina;
         if (staminaBar != null)
         {
-            // Image 的 FillAmount 是 0 到 1 之間的小數，所以我們用「當前體力 / 最大體力」來算出比例
             staminaBar.fillAmount = currentStamina / maxStamina;
+        }
+
+        // 【新增】遊戲開始時，自動往下層尋找 Animator 動畫機
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
         }
     }
 
@@ -43,7 +51,6 @@ public class SimplePlayerMovement : MonoBehaviour
 
         if (staminaBar != null)
         {
-            // 每次扣體力時，重新計算比例並更新圖片的顯示進度
             staminaBar.fillAmount = currentStamina / maxStamina;
         }
 
@@ -55,7 +62,12 @@ public class SimplePlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isRotatingObject) return;
+        if (isRotatingObject)
+        {
+            // 如果正在原地旋轉物品，強制讓角色維持站立動畫
+            if (animator != null) animator.SetFloat("Speed", 0f);
+            return;
+        }
 
         // --- 1. 處理水平移動 (WASD) ---
         float x = 0;
@@ -66,6 +78,12 @@ public class SimplePlayerMovement : MonoBehaviour
         if (Keyboard.current.sKey.isPressed) z -= 1;
 
         Vector3 inputDir = new Vector3(x, 0, z).normalized;
+
+        // 【關鍵新增】計算當前的移動強度 (0 到 1)，並傳送給 Animator 的 Speed 變數！
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", inputDir.magnitude);
+        }
 
         if (inputDir.magnitude > 0.1f)
         {
@@ -102,9 +120,17 @@ public class SimplePlayerMovement : MonoBehaviour
             return;
         }
 
+        // 當小男孩踩在物件上時 (Y軸向下)
         if (hit.moveDirection.y < -0.3f)
         {
-            Vector3 force = Vector3.down * playerMass * Mathf.Abs(gravity);
+            // 【全新寫法：溫和下壓力】
+            // 不再使用破百的暴力數值，改用一個可以手動微調的平滑力道
+            float stepForce = 5f;
+
+            // 讓踩下去的力道會跟著木板本身的重量成正比，避免太重踩翻、太輕踩不動
+            Vector3 force = Vector3.down * stepForce * body.mass;
+
+            // 平滑地施加在腳踩到的位置上
             body.AddForceAtPosition(force, hit.point);
         }
     }

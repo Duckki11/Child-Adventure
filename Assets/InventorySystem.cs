@@ -58,7 +58,7 @@ public class InventorySystem : MonoBehaviour
             else if (scroll < -0.1f) currentDist -= 0.5f;
             currentDist = Mathf.Clamp(currentDist, minHoldDist, maxHoldDist);
 
-            Vector3 targetPosition = holdPoint.position + cam.transform.forward * currentDist;
+            Vector3 targetPosition = holdPoint.position + transform.forward * currentDist;
             heldObject.transform.position = targetPosition;
 
             if (dropIndicator != null)
