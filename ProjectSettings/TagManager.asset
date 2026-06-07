@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pickable
   - Rock
+  - WoodBoard
   layers:
   - Default
   - TransparentFX

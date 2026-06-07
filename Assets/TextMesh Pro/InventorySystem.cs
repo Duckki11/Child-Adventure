@@ -121,11 +121,10 @@ public class InventorySystem : MonoBehaviour
         }
 
         if (movementScript != null) movementScript.ConsumeStamina(staminaCost);
-
         heldObject = obj;
         currentDist = holdDistance;
         heldObject.transform.SetParent(null);
-        heldObject.transform.rotation = cam.transform.rotation;
+        heldObject.transform.rotation = Quaternion.Euler(90, cam.transform.eulerAngles.y, 0);
 
         if (rb != null) rb.isKinematic = true;
         Collider coll = heldObject.GetComponent<Collider>();
