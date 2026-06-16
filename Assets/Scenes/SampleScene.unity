@@ -2170,8 +2170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -478.91064, y: 303.55618}
-  m_SizeDelta: {x: 777.9498, y: 279.383}
+  m_AnchoredPosition: {x: -26.239, y: 229.63}
+  m_SizeDelta: {x: 1683.3, y: 459.2543}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564221424
 MonoBehaviour:
@@ -2195,18 +2195,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 70
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u904A\u6232\u79FB\u52D5:\nWASD  /\u73A9\u5BB6\u79FB\u52D5   F1\u559A\u56DE\u9F20\u6A19\n\u6ED1\u9F20\u53F3\u9375\u9577\u6309 
+  m_Text: "\u904A\u6232\u73A9\u6CD5:\n\nWASD /\u73A9\u5BB6\u79FB\u52D5   F1 /\u559A\u56DE\u9F20\u6A19\n\u9577\u6309\u6ED1\u9F20\u53F3\u9375
     /\u8996\u89D2\u8F49\u52D5\nE /\u62FF\u53D6   Q /\u653E\u4E0B   R /\u8F49\u52D5"
 --- !u!222 &564221425
 CanvasRenderer:
@@ -5866,7 +5866,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -44.611023, y: -60.073387}
+  m_AnchoredPosition: {x: -44.615, y: -194.76}
   m_SizeDelta: {x: 1646.5491, y: 389.5297}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1680138124
