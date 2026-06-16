@@ -1,23 +1,22 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // 控制場景切換必備
+using UnityEngine.SceneManagement;
 
 public class GameOverAction : MonoBehaviour
 {
-    // 如果你想讓玩家「重新開始這一關」，就呼叫這個
+    // 如果你想讓玩家「重新開始這一關」
     public void RestartLevel()
     {
-        Time.timeScale = 1f; // 確保遊戲時間恢復正常（以免你在失敗時暫停了遊戲）
-
-        // 自動重新讀取目前所在的關卡（第一關）
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // 如果你想讓玩家「回到主選單」，就呼叫這個
+    // 回到主畫面
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
 
-        // 確保括號裡的名字跟你的主選單場景名稱一模一樣
+        // 【檢查點】請確認這裡的名字跟你 Unity 場景資料夾裡的主選單檔案名稱完全一致
+        // 假設你的主選單場景檔案叫做 "MainMenu"
         SceneManager.LoadScene("MainMenu");
     }
 }
