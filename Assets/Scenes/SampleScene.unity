@@ -6706,7 +6706,7 @@ MonoBehaviour:
   gravity: -25
   playerMass: 2
   staminaBar: {fileID: 983556702}
-  maxStamina: 45
+  maxStamina: 44
   currentStamina: 0
 --- !u!143 &1845161861
 CharacterController:
